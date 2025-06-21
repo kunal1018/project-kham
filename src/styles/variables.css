@@ -44,11 +44,11 @@
   --color-text-white-muted: rgba(255, 255, 255, 0.8);
   
   /* Background Colors */
-  --color-bg-primary: #1E293B;
-  --color-bg-secondary: #F8FAFC;
+  --color-bg-primary: #0F172A;
+  --color-bg-secondary: #1E293B;
   --color-bg-card: #FFFFFF;
   --color-bg-overlay: rgba(0, 0, 0, 0.7);
-  --color-bg-glass: rgba(255, 255, 255, 0.95);
+  --color-bg-glass: rgba(255, 255, 255, 0.98);
   --color-bg-disabled: #F9FAFB;
   
   /* Border Colors */
@@ -58,10 +58,10 @@
   --color-border-focus: #60A5FA;
   
   /* Interactive States */
-  --color-hover-blue: rgba(96, 165, 250, 0.1);
-  --color-hover-green: rgba(52, 211, 153, 0.1);
-  --color-hover-purple: rgba(167, 139, 250, 0.1);
-  --color-hover-coral: rgba(255, 127, 107, 0.1);
+  --color-hover-blue: rgba(96, 165, 250, 0.15);
+  --color-hover-green: rgba(52, 211, 153, 0.15);
+  --color-hover-purple: rgba(167, 139, 250, 0.15);
+  --color-hover-coral: rgba(255, 127, 107, 0.15);
   
   /* Gradients */
   --gradient-purple: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-purple-dark) 100%);
@@ -92,9 +92,9 @@
   --color-difficulty-hard: var(--color-accent-purple);
   
   /* Navigation Colors */
-  --color-nav-background: var(--color-primary-navy);
-  --color-nav-border: var(--color-border-dark);
-  --color-nav-text: var(--color-text-muted);
+  --color-nav-background: #1E293B;
+  --color-nav-border: #374151;
+  --color-nav-text: #9CA3AF;
   --color-nav-text-active: var(--color-accent-blue);
   --color-nav-bg-active: rgba(96, 165, 250, 0.15);
   
@@ -105,7 +105,7 @@
   --color-lesson-card-next: var(--color-accent-blue);
   
   /* Modal and Overlay Colors */
-  --color-modal-bg: var(--color-bg-card);
+  --color-modal-bg: #FFFFFF;
   --color-modal-overlay: var(--color-bg-overlay);
   --color-modal-border: var(--color-border-primary);
   
@@ -119,12 +119,12 @@
 /* Dark mode support (for future use) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-text-primary: #F9FAFB;
-    --color-text-secondary: #E5E7EB;
-    --color-text-tertiary: #D1D5DB;
-    --color-bg-card: #374151;
-    --color-bg-secondary: #1F2937;
-    --color-border-primary: #4B5563;
-    --color-border-secondary: #374151;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #F1F5F9;
+    --color-text-tertiary: #CBD5E1;
+    --color-bg-card: #1E293B;
+    --color-bg-secondary: #0F172A;
+    --color-border-primary: #334155;
+    --color-border-secondary: #1E293B;
   }
 }

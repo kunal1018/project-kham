@@ -23,12 +23,12 @@ const LeaderboardScreen = () => {
   const profile = { 
     id: "test-user-123",
     username: "TestUser", 
-    total_xp: 350, 
-    current_rank: "Silver",
+    total_xp: 650, 
+    current_rank: "Bronze",
     daily_streak: 5,
     last_activity: new Date().toISOString(),
     earned_badges: ['100_xp_club', 'first_lesson', 'streak_master', 'bronze_rank'],
-    cham_color: '#C0C0C0',
+    cham_color: '#CD7F32',
     display_tag: 'WLU'
   }
   const loading = false

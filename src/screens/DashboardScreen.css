@@ -17,8 +17,8 @@
   flex-direction: column;
   align-items: center;
   padding: 30px 20px;
-  background: var(--color-bg-card);
-  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-white);
   margin-bottom: 24px;
   border-radius: 0 0 16px 16px;
   box-shadow: var(--shadow-primary);
@@ -27,7 +27,7 @@
 .welcome-text {
   font-size: 24px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-white);
   margin-top: 12px;
   line-height: 1.4;
   text-align: center;

@@ -2,7 +2,7 @@
 
 .leaderboard-screen {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-border-primary) 100%);
+  background: var(--color-bg-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
   position: relative;
   overflow-x: hidden;
@@ -13,7 +13,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--color-bg-glass);
+  background: var(--color-bg-secondary);
   backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 0.5px solid var(--color-border-primary);
   padding: 16px 20px 12px;
@@ -29,7 +29,7 @@
 .nav-title {
   font-size: 34px;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-text-white);
   letter-spacing: -0.5px;
   margin: 0;
 }
@@ -72,7 +72,7 @@
   border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--color-text-white-muted);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
@@ -104,7 +104,7 @@
   text-align: center;
   font-size: 17px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-white);
   margin-bottom: 24px;
   letter-spacing: -0.3px;
 }
@@ -188,7 +188,7 @@
 .podium-username {
   font-size: 15px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-white);
   margin-bottom: 4px;
   text-align: center;
   letter-spacing: -0.2px;
@@ -196,7 +196,7 @@
 
 .podium-score {
   font-size: 13px;
-  color: var(--color-text-muted);
+  color: var(--color-text-white-muted);
   font-weight: 500;
 }
 
@@ -213,13 +213,13 @@
 .list-header {
   padding: 16px 20px;
   border-bottom: 0.5px solid var(--color-border-primary);
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-card);
 }
 
 .list-title {
   font-size: 17px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-white);
   margin: 0;
   letter-spacing: -0.3px;
 }
@@ -256,7 +256,7 @@
   width: 32px;
   font-size: 17px;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--color-text-white-muted);
   text-align: center;
   margin-right: 16px;
 }
@@ -287,7 +287,7 @@
 .player-name {
   font-size: 17px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-white);
   margin-bottom: 2px;
   letter-spacing: -0.2px;
   white-space: nowrap;
@@ -297,7 +297,7 @@
 
 .player-score {
   font-size: 15px;
-  color: var(--color-text-muted);
+  color: var(--color-text-white-muted);
   font-weight: 500;
 }
 
@@ -369,7 +369,7 @@
 .current-user-title {
   font-size: 15px;
   font-weight: 600;
-  color: var(--color-accent-blue);
+  color: var(--color-text-white);
   margin-bottom: 12px;
   text-align: center;
   letter-spacing: -0.2px;
@@ -401,7 +401,7 @@
 
 .loading-text {
   font-size: 17px;
-  color: var(--color-text-muted);
+  color: var(--color-text-white-muted);
   font-weight: 500;
 }
 
@@ -423,14 +423,14 @@
 .empty-title {
   font-size: 20px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-white);
   margin-bottom: 8px;
   text-align: center;
 }
 
 .empty-description {
   font-size: 15px;
-  color: var(--color-text-muted);
+  color: var(--color-text-white-muted);
   text-align: center;
   line-height: 1.4;
 }
@@ -441,7 +441,7 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  color: var(--color-text-muted);
+  color: var(--color-text-white-muted);
   font-size: 15px;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -578,7 +578,7 @@
   border-radius: 8px;
   font-size: 15px;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--color-text-white-muted);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

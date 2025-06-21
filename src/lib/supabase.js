@@ -5,16 +5,16 @@ console.log('Using mocked Supabase functions for UI showcase');
 
 // Mock data
 const mockUsers = [
-  { id: "user-1", username: "CodeMaster", total_xp: 2500, current_rank: "Gold", display_tag: "PRO", last_seen: new Date().toISOString() },
-  { id: "user-2", username: "PytonNinja", total_xp: 1800, current_rank: "Silver", display_tag: "DEV", last_seen: new Date().toISOString() },
-  { id: "user-3", username: "JSWizard", total_xp: 1200, current_rank: "Silver", display_tag: "WIZ", last_seen: new Date().toISOString() },
-  { id: "user-4", username: "ReactGuru", total_xp: 950, current_rank: "Bronze", display_tag: "GUI", last_seen: new Date().toISOString() },
-  { id: "user-5", username: "DataSci", total_xp: 875, current_rank: "Bronze", display_tag: "SCI", last_seen: new Date().toISOString() },
-  { id: "user-6", username: "WebDev123", total_xp: 650, current_rank: "Bronze", display_tag: "WEB", last_seen: new Date().toISOString() },
-  { id: "user-7", username: "AlgoExpert", total_xp: 580, current_rank: "Bronze", display_tag: "ALG", last_seen: new Date().toISOString() },
-  { id: "user-8", username: "FullStack", total_xp: 420, current_rank: "Bronze", display_tag: "FS", last_seen: new Date().toISOString() },
-  { id: "test-user-123", username: "TestUser", total_xp: 350, current_rank: "Silver", display_tag: "WLU", last_seen: new Date().toISOString() },
-  { id: "user-9", username: "CSSNinja", total_xp: 320, current_rank: "Bronze", display_tag: "CSS", last_seen: new Date().toISOString() },
+  { id: "user-1", username: "CodeMaster", total_xp: 2500, current_rank: "Gold", display_tag: "PRO", last_seen: new Date().toISOString(), position: 1 },
+  { id: "user-2", username: "PytonNinja", total_xp: 1800, current_rank: "Silver", display_tag: "DEV", last_seen: new Date().toISOString(), position: 2 },
+  { id: "user-3", username: "JSWizard", total_xp: 1200, current_rank: "Silver", display_tag: "WIZ", last_seen: new Date().toISOString(), position: 3 },
+  { id: "user-4", username: "ReactGuru", total_xp: 950, current_rank: "Bronze", display_tag: "GUI", last_seen: new Date().toISOString(), position: 4 },
+  { id: "user-5", username: "DataSci", total_xp: 875, current_rank: "Bronze", display_tag: "SCI", last_seen: new Date().toISOString(), position: 5 },
+  { id: "test-user-123", username: "TestUser", total_xp: 650, current_rank: "Bronze", display_tag: "WLU", last_seen: new Date().toISOString(), position: 6 },
+  { id: "user-6", username: "WebDev123", total_xp: 580, current_rank: "Bronze", display_tag: "WEB", last_seen: new Date().toISOString(), position: 7 },
+  { id: "user-7", username: "AlgoExpert", total_xp: 420, current_rank: "Bronze", display_tag: "ALG", last_seen: new Date().toISOString(), position: 8 },
+  { id: "user-8", username: "FullStack", total_xp: 350, current_rank: "Bronze", display_tag: "FS", last_seen: new Date().toISOString(), position: 9 },
+  { id: "user-9", username: "CSSNinja", total_xp: 320, current_rank: "Bronze", display_tag: "CSS", last_seen: new Date().toISOString(), position: 10 },
 ];
 
 const mockLessons = [
@@ -32,9 +32,11 @@ const mockUserLessons = [
 ];
 
 const mockFriends = [
-  { id: "user-1", username: "CodeMaster", total_xp: 2500, current_rank: "Gold", display_tag: "PRO", last_seen: new Date().toISOString() },
-  { id: "user-2", username: "PytonNinja", total_xp: 1800, current_rank: "Silver", display_tag: "DEV", last_seen: new Date().toISOString() },
-  { id: "user-3", username: "JSWizard", total_xp: 1200, current_rank: "Silver", display_tag: "WIZ", last_seen: new Date().toISOString() },
+  { id: "user-1", username: "CodeMaster", total_xp: 2500, current_rank: "Gold", display_tag: "PRO", last_seen: new Date().toISOString(), position: 1 },
+  { id: "user-2", username: "PytonNinja", total_xp: 1800, current_rank: "Silver", display_tag: "DEV", last_seen: new Date().toISOString(), position: 2 },
+  { id: "user-3", username: "JSWizard", total_xp: 1200, current_rank: "Silver", display_tag: "WIZ", last_seen: new Date().toISOString(), position: 3 },
+  { id: "user-4", username: "ReactGuru", total_xp: 950, current_rank: "Bronze", display_tag: "GUI", last_seen: new Date().toISOString(), position: 4 },
+  { id: "test-user-123", username: "TestUser", total_xp: 650, current_rank: "Bronze", display_tag: "WLU", last_seen: new Date().toISOString(), position: 5 },
 ];
 
 const mockFriendRequests = [
@@ -146,16 +148,14 @@ export const getGlobalLeaderboard = async (limit = 50) => {
 
 export const getUserRankPosition = async (userId) => {
   await delay();
-  const sortedUsers = [...mockUsers].sort((a, b) => b.total_xp - a.total_xp);
-  const position = sortedUsers.findIndex(user => user.id === userId) + 1;
-  return { data: position || mockUsers.length + 1, error: null };
+  const user = mockUsers.find(u => u.id === userId);
+  return { data: user ? user.position : mockUsers.length + 1, error: null };
 };
 
 // Mock Friends functions
 export const getFriendsList = async (userId) => {
   await delay();
-  const friends = mockFriends.map((friend, index) => ({ ...friend, position: index + 1 }));
-  return { data: friends, error: null };
+  return { data: mockFriends, error: null };
 };
 
 export const getPendingFriendRequests = async (userId) => {

@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: center;
   padding: 30px 20px;
-  background: var(--color-bg-card);
+  background: var(--color-bg-secondary);
   margin-bottom: 24px;
   border-radius: 0 0 16px 16px;
   box-shadow: var(--shadow-primary);
