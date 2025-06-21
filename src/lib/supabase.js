@@ -139,11 +139,9 @@ export const completeLesson = async (userId, lessonId, score = 100) => {
 // Mock Leaderboard functions
 export const getGlobalLeaderboard = async (limit = 50) => {
   await delay();
-  const sortedUsers = [...mockUsers]
-    .sort((a, b) => b.total_xp - a.total_xp)
-    .slice(0, limit)
-    .map((user, index) => ({ ...user, position: index + 1 }));
-  return { data: sortedUsers, error: null };
+  // Return users in their predefined order with existing positions
+  const leaderboard = mockUsers.slice(0, limit);
+  return { data: leaderboard, error: null };
 };
 
 export const getUserRankPosition = async (userId) => {
