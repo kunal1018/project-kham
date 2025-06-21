@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--color-modal-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +12,7 @@
 }
 
 .friend-modal {
-  background: white;
+  background: var(--color-modal-bg);
   border-radius: 16px;
   width: 90%;
   max-width: 500px;
@@ -26,15 +26,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  border-bottom: 1px solid #f0f0f0;
-  background: linear-gradient(135deg, #4CAF50, #66BB6A);
-  color: white;
+  border-bottom: 1px solid var(--color-border-primary);
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-success));
+  color: var(--color-text-white);
 }
 
 .friend-modal-header h2 {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
+  color: var(--color-text-white);
 }
 
 .close-btn {
@@ -42,7 +43,7 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: white;
+  color: var(--color-text-white);
   padding: 0;
   width: 30px;
   height: 30px;
@@ -59,7 +60,7 @@
 
 .friend-tabs {
   display: flex;
-  background: #f8f9fa;
+  background: var(--color-bg-secondary);
 }
 
 .friend-tab {
@@ -70,14 +71,14 @@
   border-bottom: 3px solid transparent;
   cursor: pointer;
   font-weight: 600;
-  color: #666;
+  color: var(--color-text-tertiary);
   transition: all 0.3s ease;
 }
 
 .friend-tab.active {
-  color: #4CAF50;
-  border-bottom-color: #4CAF50;
-  background: white;
+  color: var(--color-accent-green);
+  border-bottom-color: var(--color-accent-green);
+  background: var(--color-bg-card);
 }
 
 .friend-modal-content {
@@ -87,8 +88,8 @@
 }
 
 .friend-message {
-  background: #e8f5e8;
-  color: #2e7d32;
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
   padding: 12px 16px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -99,7 +100,7 @@
 .empty-state {
   text-align: center;
   padding: 40px 20px;
-  color: #666;
+  color: var(--color-text-tertiary);
 }
 
 .empty-emoji {
@@ -118,7 +119,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px;
-  background: #f8f9fa;
+  background: var(--color-bg-secondary);
   border-radius: 12px;
   transition: transform 0.2s ease;
 }
@@ -133,13 +134,13 @@
 
 .request-username, .result-username {
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary);
   margin-bottom: 4px;
 }
 
 .request-stats, .result-stats {
   font-size: 12px;
-  color: #666;
+  color: var(--color-text-tertiary);
 }
 
 .request-actions {
@@ -159,22 +160,22 @@
 }
 
 .accept-btn {
-  background: #4CAF50;
-  color: white;
+  background: var(--color-success);
+  color: var(--color-text-white);
 }
 
 .accept-btn:hover {
-  background: #45a049;
+  background: var(--color-success-dark);
   transform: scale(1.1);
 }
 
 .decline-btn {
-  background: #f44336;
-  color: white;
+  background: var(--color-error);
+  color: var(--color-text-white);
 }
 
 .decline-btn:hover {
-  background: #da190b;
+  background: var(--color-error-dark);
   transform: scale(1.1);
 }
 
@@ -187,7 +188,7 @@
 .search-input {
   flex: 1;
   padding: 12px 16px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--color-border-primary);
   border-radius: 8px;
   font-size: 16px;
   transition: border-color 0.2s ease;
@@ -195,13 +196,13 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: var(--color-accent-green);
 }
 
 .search-btn {
   padding: 12px 16px;
-  background: #4CAF50;
-  color: white;
+  background: var(--color-accent-green);
+  color: var(--color-text-white);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -210,13 +211,13 @@
 }
 
 .search-btn:hover {
-  background: #45a049;
+  background: var(--color-success-dark);
 }
 
 .add-friend-btn {
   padding: 8px 16px;
-  background: #4CAF50;
-  color: white;
+  background: var(--color-accent-green);
+  color: var(--color-text-white);
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -226,12 +227,12 @@
 }
 
 .add-friend-btn:hover {
-  background: #45a049;
+  background: var(--color-success-dark);
   transform: translateY(-2px);
 }
 
 .add-friend-btn:disabled {
-  background: #ccc;
+  background: var(--color-text-disabled);
   cursor: not-allowed;
   transform: none;
 }
