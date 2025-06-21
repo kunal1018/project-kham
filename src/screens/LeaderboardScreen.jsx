@@ -6,7 +6,7 @@ import DuelChallenge from '../components/DuelChallenge';
 import FriendRequestModal from '../components/FriendRequestModal';
 import MotivationalToast from '../components/MotivationalToast';
 import AuthModal from '../components/AuthModal';
-import { useAuth } from '../contexts/AuthContext';
+// import { useAuth } from '../contexts/AuthContext'; // TEMP: Disabled for local testing
 import { 
   getGlobalLeaderboard, 
   getFriendsList, 
@@ -20,7 +20,25 @@ import {
 import './LeaderboardScreen.css';
 
 const LeaderboardScreen = () => {
-  const { user, profile, loading, authError, clearAuthError } = useAuth();
+  // const { user, profile, loading, authError, clearAuthError } = useAuth(); // TEMP: Disabled
+  
+  // TEMP: Fake auth data for local development
+  const user = { id: "test-user-123", email: "test@example.com" }
+  const profile = { 
+    id: "test-user-123",
+    username: "TestUser", 
+    total_xp: 350, 
+    current_rank: "Silver",
+    daily_streak: 5,
+    last_activity: new Date().toISOString(),
+    earned_badges: ['100_xp_club', 'first_lesson', 'streak_master', 'bronze_rank'],
+    cham_color: '#C0C0C0',
+    display_tag: 'WLU'
+  }
+  const loading = false
+  const authError = null
+  const clearAuthError = () => { console.log('clearAuthError called (fake)') }
+  
   const [activeTab, setActiveTab] = useState('Global');
   const [timePeriod, setTimePeriod] = useState('all');
   const [globalLeaderboard, setGlobalLeaderboard] = useState([]);
@@ -311,37 +329,38 @@ const LeaderboardScreen = () => {
   };
 
   // Show auth modal if not logged in
-  if (!loading && !user) {
-    return (
-      <div className="leaderboard-screen">
-        <div className="leaderboard-nav">
-          <div className="nav-header">
-            <h1 className="nav-title">Leaderboard</h1>
-          </div>
-        </div>
-        
-        <div className="leaderboard-content">
-          <div className="loading-container">
-            <div className="empty-icon">🔒</div>
-            <h2 className="empty-title">Sign In Required</h2>
-            <p className="empty-description">Sign in to view the leaderboard and compete with other coders!</p>
-            <button 
-              className="friends-btn"
-              onClick={() => setShowAuthModal(true)}
-              style={{ marginTop: '20px' }}
-            >
-              Sign In
-            </button>
-          </div>
-
-          <AuthModal 
-            isOpen={showAuthModal} 
-            onClose={() => setShowAuthModal(false)} 
-          />
-        </div>
-      </div>
-    );
-  }
+  // TEMP: Commented out auth check for local testing
+  // if (!loading && !user) {
+  //   return (
+  //     <div className="leaderboard-screen">
+  //       <div className="leaderboard-nav">
+  //         <div className="nav-header">
+  //           <h1 className="nav-title">Leaderboard</h1>
+  //         </div>
+  //       </div>
+  //       
+  //       <div className="leaderboard-content">
+  //         <div className="loading-container">
+  //           <div className="empty-icon">🔒</div>
+  //           <h2 className="empty-title">Sign In Required</h2>
+  //           <p className="empty-description">Sign in to view the leaderboard and compete with other coders!</p>
+  //           <button 
+  //             className="friends-btn"
+  //             onClick={() => setShowAuthModal(true)}
+  //             style={{ marginTop: '20px' }}
+  //           >
+  //             Sign In
+  //           </button>
+  //         </div>
+  //
+  //         <AuthModal 
+  //           isOpen={showAuthModal} 
+  //           onClose={() => setShowAuthModal(false)} 
+  //         />
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   // Show loading state
   if (loading || loadingData) {
