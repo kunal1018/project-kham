@@ -23,7 +23,6 @@ body {
   min-height: 100vh;
 }
 
-/* Mobile-first responsive design */
 @media (max-width: 768px) {
   body {
     font-size: 14px;
