@@ -1,0 +1,67 @@
+.cham-reaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.reaction-mascot {
+  font-size: 48px;
+  transition: transform 0.3s ease;
+}
+
+.reaction-message {
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.cham-reaction.large .reaction-mascot {
+  font-size: 48px;
+}
+
+.cham-reaction.large .reaction-message {
+  font-size: 16px;
+}
+
+.cham-reaction.small .reaction-mascot {
+  font-size: 24px;
+}
+
+.cham-reaction.small .reaction-message {
+  font-size: 12px;
+}
+
+.cham-reaction.animating .reaction-mascot {
+  animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+}
+
+.cham-reaction.celebrating .reaction-mascot {
+  animation: celebrate 2s ease-in-out infinite;
+}
+
+@keyframes celebrate {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}

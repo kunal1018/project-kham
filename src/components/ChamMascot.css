@@ -1,0 +1,32 @@
+.cham-mascot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mascot-emoji {
+  text-align: center;
+}
+
+.mascot-name {
+  color: var(--color-success);
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.cham-mascot.large .mascot-emoji {
+  font-size: 48px;
+}
+
+.cham-mascot.large .mascot-name {
+  font-size: 16px;
+}
+
+.cham-mascot.small .mascot-emoji {
+  font-size: 24px;
+}
+
+.cham-mascot.small .mascot-name {
+  font-size: 14px;
+}

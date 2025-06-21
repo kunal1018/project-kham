@@ -1,0 +1,130 @@
+/* ChamCode Color System - CSS Variables */
+
+:root {
+  /* Primary Colors */
+  --color-primary-navy: #1E293B;
+  --color-primary-white: #FFFFFF;
+  
+  /* Accent Colors */
+  --color-accent-purple: #A78BFA;
+  --color-accent-purple-dark: #8B5CF6;
+  --color-accent-green: #34D399;
+  --color-accent-green-dark: #10B981;
+  --color-accent-blue: #60A5FA;
+  --color-accent-blue-dark: #3B82F6;
+  --color-accent-coral: #FF7F6B;
+  --color-accent-coral-dark: #EF4444;
+  
+  /* Status Colors */
+  --color-success: #34D399;
+  --color-success-dark: #059669;
+  --color-success-light: #F0FDF4;
+  --color-warning: #F59E0B;
+  --color-warning-dark: #D97706;
+  --color-warning-light: #FFFBEB;
+  --color-error: #EF4444;
+  --color-error-dark: #DC2626;
+  --color-error-light: #FEF2F2;
+  
+  /* XP and Achievement Colors */
+  --color-xp-gold: #FFD700;
+  --color-xp-gold-dark: #FFA000;
+  --color-achievement-gold: #FFD700;
+  --color-achievement-silver: #C0C0C0;
+  --color-achievement-bronze: #CD7F32;
+  
+  /* Text Colors */
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #4B5563;
+  --color-text-tertiary: #6B7280;
+  --color-text-muted: #9CA3AF;
+  --color-text-disabled: #D1D5DB;
+  --color-text-white: #FFFFFF;
+  --color-text-white-secondary: rgba(255, 255, 255, 0.9);
+  --color-text-white-muted: rgba(255, 255, 255, 0.8);
+  
+  /* Background Colors */
+  --color-bg-primary: #1E293B;
+  --color-bg-secondary: #F8FAFC;
+  --color-bg-card: #FFFFFF;
+  --color-bg-overlay: rgba(0, 0, 0, 0.7);
+  --color-bg-glass: rgba(255, 255, 255, 0.95);
+  --color-bg-disabled: #F9FAFB;
+  
+  /* Border Colors */
+  --color-border-primary: #E5E7EB;
+  --color-border-secondary: #F3F4F6;
+  --color-border-dark: #374151;
+  --color-border-focus: #60A5FA;
+  
+  /* Interactive States */
+  --color-hover-blue: rgba(96, 165, 250, 0.1);
+  --color-hover-green: rgba(52, 211, 153, 0.1);
+  --color-hover-purple: rgba(167, 139, 250, 0.1);
+  --color-hover-coral: rgba(255, 127, 107, 0.1);
+  
+  /* Gradients */
+  --gradient-purple: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-purple-dark) 100%);
+  --gradient-green: linear-gradient(135deg, var(--color-accent-green) 0%, var(--color-accent-green-dark) 100%);
+  --gradient-blue: linear-gradient(135deg, var(--color-accent-blue) 0%, var(--color-accent-blue-dark) 100%);
+  --gradient-coral: linear-gradient(135deg, var(--color-accent-coral) 0%, var(--color-accent-coral-dark) 100%);
+  --gradient-gold: linear-gradient(135deg, var(--color-xp-gold) 0%, var(--color-xp-gold-dark) 100%);
+  
+  /* Shadows */
+  --shadow-primary: 0px 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-secondary: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-purple: 0px 4px 12px rgba(167, 139, 250, 0.3);
+  --shadow-green: 0px 4px 12px rgba(52, 211, 153, 0.3);
+  --shadow-blue: 0px 4px 12px rgba(96, 165, 250, 0.3);
+  --shadow-coral: 0px 4px 12px rgba(255, 127, 107, 0.3);
+  --shadow-gold: 0px 4px 12px rgba(255, 215, 0, 0.3);
+  
+  /* Rank Colors */
+  --color-rank-bronze: #CD7F32;
+  --color-rank-silver: #C0C0C0;
+  --color-rank-gold: #FFD700;
+  --color-rank-platinum: #E5E4E2;
+  --color-rank-diamond: #B9F2FF;
+  
+  /* Difficulty Colors */
+  --color-difficulty-beginner: var(--color-accent-purple);
+  --color-difficulty-medium: var(--color-accent-purple);
+  --color-difficulty-hard: var(--color-accent-purple);
+  
+  /* Navigation Colors */
+  --color-nav-background: var(--color-primary-navy);
+  --color-nav-border: var(--color-border-dark);
+  --color-nav-text: var(--color-text-muted);
+  --color-nav-text-active: var(--color-accent-blue);
+  --color-nav-bg-active: rgba(96, 165, 250, 0.15);
+  
+  /* Specific Component Colors */
+  --color-lesson-card-bg: var(--color-bg-card);
+  --color-lesson-card-locked: var(--color-bg-disabled);
+  --color-lesson-card-completed: var(--color-success-light);
+  --color-lesson-card-next: var(--color-accent-blue);
+  
+  /* Modal and Overlay Colors */
+  --color-modal-bg: var(--color-bg-card);
+  --color-modal-overlay: var(--color-bg-overlay);
+  --color-modal-border: var(--color-border-primary);
+  
+  /* Toast Colors */
+  --color-toast-success: var(--color-success);
+  --color-toast-warning: var(--color-warning);
+  --color-toast-error: var(--color-error);
+  --color-toast-info: var(--color-accent-blue);
+}
+
+/* Dark mode support (for future use) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-primary: #F9FAFB;
+    --color-text-secondary: #E5E7EB;
+    --color-text-tertiary: #D1D5DB;
+    --color-bg-card: #374151;
+    --color-bg-secondary: #1F2937;
+    --color-border-primary: #4B5563;
+    --color-border-secondary: #374151;
+  }
+}

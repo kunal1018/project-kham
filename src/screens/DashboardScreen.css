@@ -1,0 +1,671 @@
+.dashboard-screen {
+  min-height: 100vh;
+  background: var(--color-bg-primary);
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+  color: var(--color-text-white);
+}
+
+.dashboard-content {
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  background: var(--color-bg-card);
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+  border-radius: 0 0 16px 16px;
+  box-shadow: var(--shadow-primary);
+}
+
+.welcome-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-top: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Stats Card */
+.stats-card {
+  background: var(--gradient-purple);
+  color: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-purple);
+  margin: 0 16px 24px;
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--color-text-white-muted);
+  border-radius: 1px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-white);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--color-text-white-secondary);
+  margin-top: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Lesson Carousel Section */
+.lesson-carousel-section {
+  margin: 0 0 24px 0;
+}
+
+.carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px 16px;
+}
+
+.carousel-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-white);
+  margin: 0;
+}
+
+.view-all-btn {
+  background: none;
+  border: none;
+  color: var(--color-accent-blue);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.view-all-btn:hover {
+  background: var(--color-hover-blue);
+}
+
+.lesson-carousel-container {
+  position: relative;
+  overflow: hidden;
+  padding: 0 0 16px 0;
+}
+
+.lesson-carousel {
+  display: flex;
+  gap: 16px;
+  padding: 0 16px;
+  animation: scroll-left 20s linear infinite;
+  transition: animation-play-state 0.3s ease;
+}
+
+.lesson-carousel:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 16px));
+  }
+}
+
+.lesson-card {
+  min-width: 300px;
+  height: 180px;
+  background: var(--gradient-purple);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-purple);
+}
+
+.lesson-card:nth-child(2n) {
+  background: var(--gradient-coral);
+  box-shadow: var(--shadow-coral);
+}
+
+.lesson-card:nth-child(3n) {
+  background: var(--gradient-blue);
+  box-shadow: var(--shadow-blue);
+}
+
+.lesson-card:nth-child(4n) {
+  background: var(--gradient-green);
+  box-shadow: var(--shadow-green);
+}
+
+.lesson-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-text-white-muted);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lesson-card:hover::before {
+  opacity: 1;
+}
+
+.lesson-card:hover {
+  transform: scale(1.02);
+}
+
+.lesson-card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lesson-icon-placeholder {
+  width: 48px;
+  height: 48px;
+  background: var(--color-text-white-muted);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.lesson-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-white);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.lesson-description {
+  font-size: 14px;
+  color: var(--color-text-white-muted);
+  line-height: 1.4;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.lesson-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-difficulty {
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: var(--color-text-white-muted);
+  color: var(--color-text-white);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lesson-start-btn {
+  background: var(--color-text-white-muted);
+  border: 1px solid var(--color-text-white-secondary);
+  color: var(--color-text-white);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lesson-start-btn:hover {
+  background: var(--color-text-white-secondary);
+  transform: translateY(-1px);
+}
+
+/* Duel Section */
+.duel-section {
+  margin: 24px 16px;
+}
+
+.duel-card {
+  background: var(--gradient-coral);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-coral);
+}
+
+.duel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.duel-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-white);
+  margin: 0;
+}
+
+.duel-icon {
+  font-size: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.duel-description {
+  color: var(--color-text-white-secondary);
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.duel-button {
+  background: var(--color-text-white-muted);
+  border: 1px solid var(--color-text-white-secondary);
+  color: var(--color-text-white);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  min-height: 44px;
+}
+
+.duel-button:hover {
+  background: var(--color-text-white-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Duel Modal */
+.duel-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-modal-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.duel-modal {
+  background: var(--color-modal-bg);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.duel-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-modal-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.duel-modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: var(--color-border-secondary);
+}
+
+.duel-results {
+  padding: 24px;
+}
+
+.duel-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: var(--color-bg-secondary);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+}
+
+.duel-result-item.won {
+  border-left-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.duel-result-item.lost {
+  border-left-color: var(--color-error);
+  background: var(--color-error-light);
+}
+
+.result-info {
+  flex: 1;
+}
+
+.result-opponent {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.result-time {
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+}
+
+.result-outcome {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.result-status {
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.result-status.won {
+  background: var(--color-success);
+  color: var(--color-text-white);
+}
+
+.result-status.lost {
+  background: var(--color-error);
+  color: var(--color-text-white);
+}
+
+.result-xp {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Quick Actions */
+.quick-actions-section {
+  margin: 0 16px 24px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-white);
+  margin: 0 0 16px 0;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.action-card {
+  background: var(--color-bg-card);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--color-border-primary);
+  box-shadow: var(--shadow-primary);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.action-card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-secondary);
+}
+
+.action-emoji {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.action-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.action-subtext {
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+}
+
+/* Achievement Card */
+.achievement-card {
+  background: var(--gradient-green);
+  border-radius: 16px;
+  box-shadow: var(--shadow-green);
+  margin: 0 16px 24px;
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.achievement-header {
+  display: flex;
+  align-items: center;
+}
+
+.achievement-emoji {
+  font-size: 40px;
+  margin-right: 16px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.achievement-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-white);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.achievement-text {
+  font-size: 14px;
+  color: var(--color-text-white-secondary);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 24px 16px;
+  }
+  
+  .welcome-text {
+    font-size: 20px;
+  }
+  
+  .stats-card,
+  .achievement-card,
+  .duel-card {
+    margin: 0 8px 16px;
+    padding: 20px;
+  }
+  
+  .lesson-carousel {
+    padding: 0 8px;
+  }
+  
+  .lesson-card {
+    min-width: 280px;
+    height: 160px;
+    padding: 20px;
+  }
+  
+  .lesson-title {
+    font-size: 16px;
+  }
+  
+  .lesson-description {
+    font-size: 13px;
+  }
+  
+  .carousel-header {
+    padding: 0 8px 16px;
+  }
+  
+  .quick-actions-section {
+    margin: 0 8px 16px;
+  }
+  
+  .duel-section {
+    margin: 16px 8px;
+  }
+  
+  .quick-actions {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .action-card {
+    min-height: 100px;
+    padding: 16px;
+  }
+  
+  .action-emoji {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  
+  .action-text {
+    font-size: 15px;
+  }
+  
+  .action-subtext {
+    font-size: 13px;
+  }
+}
+
+/* Touch targets */
+.lesson-start-btn,
+.duel-button,
+.view-all-btn {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* High contrast for accessibility */
+.carousel-title,
+.section-title {
+  color: var(--color-text-white);
+}
+
+.lesson-title,
+.duel-title {
+  color: var(--color-text-white);
+}
+
+.lesson-description,
+.duel-description {
+  color: var(--color-text-white-muted);
+}
+
+/* Card styles that were missing */
+.card {
+  background: var(--color-bg-card);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 0 16px 20px;
+  box-shadow: var(--shadow-primary);
+  border: 1px solid var(--color-border-primary);
+  width: calc(100% - 32px);
+  text-align: left;
+  cursor: default;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-secondary);
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}

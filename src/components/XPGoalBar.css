@@ -1,0 +1,49 @@
+.xp-goal-container {
+  background-color: var(--color-bg-card);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 16px;
+  box-shadow: var(--shadow-primary);
+}
+
+.goal-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.goal-icon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.goal-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.goal-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.current-progress {
+  color: var(--color-text-tertiary);
+}
+
+.next-rank {
+  font-weight: 600;
+}
+
+.max-rank-message {
+  text-align: center;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding: 8px;
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+}
