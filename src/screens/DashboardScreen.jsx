@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import { useAuth } from '../contexts/AuthContext' // TEMP: Disabled for local testing
 import { getUserLessons, addUserXP, subscribeToUserProfile } from '../lib/supabase'
 import ChamReaction from '../components/ChamReaction'
 import Card from '../components/Card'
@@ -7,15 +6,11 @@ import Badge from '../components/Badge'
 import Badges from '../components/Badges'
 import ProgressBar from '../components/ProgressBar'
 import XPGoalBar from '../components/XPGoalBar'
-import AuthModal from '../components/AuthModal'
 import MotivationalToast from '../components/MotivationalToast'
 import './DashboardScreen.css'
 
 const DashboardScreen = () => {
-  // All hooks must be declared at the top level before any conditional logic
-  // const { user, profile, loading, authError, refreshProfile, clearAuthError } = useAuth() // TEMP: Disabled
-  
-  // TEMP: Fake auth data for local development
+  // Hardcoded user data for UI showcase
   const user = { id: "test-user-123", email: "test@example.com" }
   const profile = { 
     id: "test-user-123",
@@ -34,11 +29,9 @@ const DashboardScreen = () => {
   }
   const loading = false
   const authError = null
-  const refreshProfile = async () => { console.log('refreshProfile called (fake)') }
-  const clearAuthError = () => { console.log('clearAuthError called (fake)') }
+  const refreshProfile = async () => { console.log('refreshProfile called (mock)') }
   
   const [userLessons, setUserLessons] = useState([])
-  const [showAuthModal, setShowAuthModal] = useState(false)
   const [loadingLessons, setLoadingLessons] = useState(true)
   const [chamMood, setChamMood] = useState('happy')
   const [chamMessage, setChamMessage] = useState('')
@@ -46,7 +39,6 @@ const DashboardScreen = () => {
   const [toasts, setToasts] = useState([])
   const [showDuelModal, setShowDuelModal] = useState(false)
 
-  // All useEffect hooks must also be at the top level
   useEffect(() => {
     if (user && profile) {
       fetchUserLessons()
@@ -62,7 +54,6 @@ const DashboardScreen = () => {
     
     if (user) {
       subscription = subscribeToUserProfile(user.id, (payload) => {
-        // Refresh profile when it's updated
         refreshProfile()
       })
     }
@@ -129,7 +120,6 @@ const DashboardScreen = () => {
     { opponent: "Sam", result: "Won", xp: "+25 XP", time: "2m 05s" },
   ]
 
-  // Helper functions defined after hooks
   const fetchUserLessons = async () => {
     if (!user?.id) {
       console.error('Cannot fetch lessons: user or user.id is missing')
@@ -153,7 +143,6 @@ const DashboardScreen = () => {
         userId: user?.id,
         userExists: !!user
       })
-      // Set empty array as fallback
       setUserLessons([])
     } finally {
       setLoadingLessons(false)
@@ -211,7 +200,6 @@ const DashboardScreen = () => {
 
     try {
       await addUserXP(user.id, amount);
-      // The real-time subscription will handle updating the profile
     } catch (error) {
       console.error('Error adding XP:', error);
     }
@@ -260,71 +248,6 @@ const DashboardScreen = () => {
     showToast('Ready to challenge your friends?', 'encouragement')
   }
 
-  // Show auth error if it exists
-  if (authError) {
-    return (
-      <div className="dashboard-screen">
-        <div className="dashboard-content">
-          <div className="dashboard-header">
-            <ChamReaction mood="confused" message="Something went wrong!" size="large" />
-            <h1 className="welcome-text">Authentication Error</h1>
-          </div>
-
-          <Card>
-            <h2 className="card-title">⚠️ Error Loading Application</h2>
-            <p style={{ marginBottom: '20px', color: '#666' }}>
-              There was a problem loading your authentication data:
-            </p>
-            <div style={{ 
-              background: '#ffebee', 
-              color: '#c62828', 
-              padding: '12px 16px', 
-              borderRadius: '8px', 
-              marginBottom: '20px',
-              fontFamily: 'monospace',
-              fontSize: '14px',
-              wordBreak: 'break-word'
-            }}>
-              {authError}
-            </div>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button 
-                onClick={() => window.location.reload()}
-                style={{
-                  padding: '12px 24px',
-                  backgroundColor: '#4CAF50',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  cursor: 'pointer'
-                }}
-              >
-                🔄 Reload Page
-              </button>
-              <button 
-                onClick={clearAuthError}
-                style={{
-                  padding: '12px 24px',
-                  backgroundColor: '#2196F3',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  cursor: 'pointer'
-                }}
-              >
-                ✨ Try Again
-              </button>
-            </div>
-          </Card>
-        </div>
-      </div>
-    )
-  }
-
   if (loading || loadingLessons) {
     return (
       <div className="dashboard-screen">
@@ -337,70 +260,6 @@ const DashboardScreen = () => {
       </div>
     )
   }
-
-  // TEMP: Commented out auth check for local testing
-  // if (!user) {
-  //   return (
-  //     <div className="dashboard-screen">
-  //       <div className="dashboard-content">
-  //         <div className="dashboard-header">
-  //           <ChamReaction mood="excited" message="Welcome to ChamCode!" size="large" />
-  //           <h1 className="welcome-text">Start Your Coding Journey</h1>
-  //         </div>
-  //
-  //         <div className="card">
-  //           <h2 className="card-title">🚀 Begin Learning</h2>
-  //           <p style={{ marginBottom: '20px', color: '#666' }}>
-  //             Join thousands of learners mastering programming skills with our interactive lessons.
-  //           </p>
-  //           <button 
-  //             className="auth-button"
-  //             onClick={() => setShowAuthModal(true)}
-  //             style={{
-  //               width: '100%',
-  //               padding: '14px',
-  //               backgroundColor: '#4CAF50',
-  //               color: 'white',
-  //               border: 'none',
-  //               borderRadius: '8px',
-  //               fontSize: '16px',
-  //               fontWeight: '600',
-  //               cursor: 'pointer'
-  //             }}
-  //           >
-  //             Get Started
-  //           </button>
-  //         </div>
-  //
-  //         <div className="card">
-  //           <h2 className="card-title">Why Choose ChamCode?</h2>
-  //           <div className="quick-actions">
-  //             <div className="action-item">
-  //               <div className="action-emoji">🎯</div>
-  //               <div className="action-text">Interactive</div>
-  //               <div className="action-subtext">Hands-on learning</div>
-  //             </div>
-  //             <div className="action-item">
-  //               <div className="action-emoji">🏆</div>
-  //               <div className="action-text">Gamified</div>
-  //               <div className="action-subtext">Earn XP & ranks</div>
-  //             </div>
-  //             <div className="action-item">
-  //               <div className="action-emoji">👥</div>
-  //               <div className="action-text">Community</div>
-  //               <div className="action-subtext">Learn together</div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //
-  //         <AuthModal 
-  //           isOpen={showAuthModal} 
-  //           onClose={() => setShowAuthModal(false)} 
-  //         />
-  //       </div>
-  //     </div>
-  //   )
-  // }
 
   const totalLessons = 6
   const completedLessons = userLessons.length

@@ -5,8 +5,6 @@ import Badges from '../components/Badges';
 import DuelChallenge from '../components/DuelChallenge';
 import FriendRequestModal from '../components/FriendRequestModal';
 import MotivationalToast from '../components/MotivationalToast';
-import AuthModal from '../components/AuthModal';
-// import { useAuth } from '../contexts/AuthContext'; // TEMP: Disabled for local testing
 import { 
   getGlobalLeaderboard, 
   getFriendsList, 
@@ -20,9 +18,7 @@ import {
 import './LeaderboardScreen.css';
 
 const LeaderboardScreen = () => {
-  // const { user, profile, loading, authError, clearAuthError } = useAuth(); // TEMP: Disabled
-  
-  // TEMP: Fake auth data for local development
+  // Hardcoded user data for UI showcase
   const user = { id: "test-user-123", email: "test@example.com" }
   const profile = { 
     id: "test-user-123",
@@ -37,8 +33,7 @@ const LeaderboardScreen = () => {
   }
   const loading = false
   const authError = null
-  const clearAuthError = () => { console.log('clearAuthError called (fake)') }
-  
+
   const [activeTab, setActiveTab] = useState('Global');
   const [timePeriod, setTimePeriod] = useState('all');
   const [globalLeaderboard, setGlobalLeaderboard] = useState([]);
@@ -46,44 +41,13 @@ const LeaderboardScreen = () => {
   const [userRankPosition, setUserRankPosition] = useState(0);
   const [selectedDuelTarget, setSelectedDuelTarget] = useState(null);
   const [showFriendModal, setShowFriendModal] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
   const [toasts, setToasts] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
   
-  // Use refs to manage subscriptions and prevent duplicate subscriptions
   const leaderboardSubscriptionRef = useRef(null);
   const friendRequestsSubscriptionRef = useRef(null);
-
-  // Show auth error if it exists
-  if (authError) {
-    return (
-      <div className="leaderboard-screen">
-        <div className="leaderboard-content">
-          <div className="loading-container">
-            <div className="empty-icon">⚠️</div>
-            <h1 className="empty-title">Authentication Error</h1>
-            <p className="empty-description">Failed to load authentication data</p>
-            <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-              <button 
-                onClick={() => window.location.reload()}
-                className="friends-btn"
-              >
-                🔄 Reload Page
-              </button>
-              <button 
-                onClick={clearAuthError}
-                className="friends-btn"
-              >
-                ✨ Try Again
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   useEffect(() => {
     if (!loading) {
@@ -96,7 +60,6 @@ const LeaderboardScreen = () => {
     }
 
     return () => {
-      // Cleanup subscriptions
       if (leaderboardSubscriptionRef.current) {
         leaderboardSubscriptionRef.current.unsubscribe();
       }
@@ -119,7 +82,6 @@ const LeaderboardScreen = () => {
     try {
       console.log('Fetching leaderboard data...');
       
-      // Fetch global leaderboard
       const { data: globalData, error: globalError } = await getGlobalLeaderboard(50);
       if (globalError) {
         console.error('Global leaderboard error:', globalError);
@@ -128,14 +90,11 @@ const LeaderboardScreen = () => {
       console.log('Global leaderboard data:', globalData);
       setGlobalLeaderboard(globalData || []);
 
-      // Fetch friends leaderboard
       await fetchFriendsList();
 
-      // Get user's rank position
       const { data: rankData, error: rankError } = await getUserRankPosition(user.id);
       if (rankError) {
         console.error('User rank error:', rankError);
-        // Don't throw here, use fallback
       }
       console.log('User rank data:', rankData);
       setUserRankPosition(rankData || 0);
@@ -157,11 +116,9 @@ const LeaderboardScreen = () => {
       const { data: friendsData, error: friendsError } = await getFriendsList(user.id);
       if (friendsError) {
         console.error('Friends leaderboard error:', friendsError);
-        // Don't throw here, friends list might be empty
       }
       console.log('Friends leaderboard data:', friendsData);
       
-      // Process friends data to add gamification elements
       const processedFriends = (friendsData || []).map((friend, index) => ({
         ...friend,
         position: index + 1,
@@ -196,7 +153,6 @@ const LeaderboardScreen = () => {
     if (!user) return;
 
     try {
-      // Only subscribe if we don't already have subscriptions
       if (!leaderboardSubscriptionRef.current) {
         leaderboardSubscriptionRef.current = subscribeToLeaderboardChanges(() => {
           console.log('Leaderboard changed, refreshing...');
@@ -227,13 +183,11 @@ const LeaderboardScreen = () => {
   const handleDuelChallenge = async (targetUser) => {
     if (!user) return;
 
-    // Haptic feedback simulation
     if (navigator.vibrate) {
       navigator.vibrate(50);
     }
 
     try {
-      // Create a duel record
       const { data: duelData, error: duelError } = await createDuel(user.id, targetUser.id);
       if (duelError) throw duelError;
 
@@ -263,7 +217,6 @@ const LeaderboardScreen = () => {
         showToast(`Good effort! +${duelResult.loser_xp} XP`, 'encouragement');
       }
 
-      // Refresh leaderboard
       fetchLeaderboardData();
 
     } catch (error) {
@@ -278,7 +231,6 @@ const LeaderboardScreen = () => {
   };
 
   const handleShare = useCallback(() => {
-    // Haptic feedback simulation
     if (navigator.vibrate) {
       navigator.vibrate([50, 50, 50]);
     }
@@ -290,7 +242,6 @@ const LeaderboardScreen = () => {
         url: window.location.href,
       });
     } else {
-      // Fallback for browsers without native share
       const text = `Check out my ranking on ChamCode! I'm #${userRankPosition} with ${profile?.total_xp || 0} XP. ${window.location.href}`;
       navigator.clipboard.writeText(text);
       showToast('Link copied to clipboard!', 'success');
@@ -298,7 +249,6 @@ const LeaderboardScreen = () => {
   }, [userRankPosition, profile?.total_xp]);
 
   const handleRefresh = useCallback(() => {
-    // Haptic feedback simulation
     if (navigator.vibrate) {
       navigator.vibrate(100);
     }
@@ -328,41 +278,6 @@ const LeaderboardScreen = () => {
     return user.username ? user.username.charAt(0).toUpperCase() : '?';
   };
 
-  // Show auth modal if not logged in
-  // TEMP: Commented out auth check for local testing
-  // if (!loading && !user) {
-  //   return (
-  //     <div className="leaderboard-screen">
-  //       <div className="leaderboard-nav">
-  //         <div className="nav-header">
-  //           <h1 className="nav-title">Leaderboard</h1>
-  //         </div>
-  //       </div>
-  //       
-  //       <div className="leaderboard-content">
-  //         <div className="loading-container">
-  //           <div className="empty-icon">🔒</div>
-  //           <h2 className="empty-title">Sign In Required</h2>
-  //           <p className="empty-description">Sign in to view the leaderboard and compete with other coders!</p>
-  //           <button 
-  //             className="friends-btn"
-  //             onClick={() => setShowAuthModal(true)}
-  //             style={{ marginTop: '20px' }}
-  //           >
-  //             Sign In
-  //           </button>
-  //         </div>
-  //
-  //         <AuthModal 
-  //           isOpen={showAuthModal} 
-  //           onClose={() => setShowAuthModal(false)} 
-  //         />
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
-  // Show loading state
   if (loading || loadingData) {
     return (
       <div className="leaderboard-screen">
@@ -382,7 +297,6 @@ const LeaderboardScreen = () => {
     );
   }
 
-  // Show error state
   if (error) {
     return (
       <div className="leaderboard-screen">

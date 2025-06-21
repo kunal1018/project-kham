@@ -1,553 +1,257 @@
-import { createClient } from '@supabase/supabase-js'
+// Mock Supabase Functions for UI Showcase
+// This file replaces the real Supabase integration with static mock data
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+console.log('Using mocked Supabase functions for UI showcase');
 
-// Debug logging for environment variables
-console.log('Supabase URL:', supabaseUrl)
-console.log('Supabase Anon Key exists:', !!supabaseAnonKey)
+// Mock data
+const mockUsers = [
+  { id: "user-1", username: "CodeMaster", total_xp: 2500, current_rank: "Gold", display_tag: "PRO", last_seen: new Date().toISOString() },
+  { id: "user-2", username: "PytonNinja", total_xp: 1800, current_rank: "Silver", display_tag: "DEV", last_seen: new Date().toISOString() },
+  { id: "user-3", username: "JSWizard", total_xp: 1200, current_rank: "Silver", display_tag: "WIZ", last_seen: new Date().toISOString() },
+  { id: "user-4", username: "ReactGuru", total_xp: 950, current_rank: "Bronze", display_tag: "GUI", last_seen: new Date().toISOString() },
+  { id: "user-5", username: "DataSci", total_xp: 875, current_rank: "Bronze", display_tag: "SCI", last_seen: new Date().toISOString() },
+  { id: "user-6", username: "WebDev123", total_xp: 650, current_rank: "Bronze", display_tag: "WEB", last_seen: new Date().toISOString() },
+  { id: "user-7", username: "AlgoExpert", total_xp: 580, current_rank: "Bronze", display_tag: "ALG", last_seen: new Date().toISOString() },
+  { id: "user-8", username: "FullStack", total_xp: 420, current_rank: "Bronze", display_tag: "FS", last_seen: new Date().toISOString() },
+  { id: "test-user-123", username: "TestUser", total_xp: 350, current_rank: "Silver", display_tag: "WLU", last_seen: new Date().toISOString() },
+  { id: "user-9", username: "CSSNinja", total_xp: 320, current_rank: "Bronze", display_tag: "CSS", last_seen: new Date().toISOString() },
+];
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
-}
+const mockLessons = [
+  { id: "lesson-1", title: "Variables & Data Types", description: "Understand strings, integers, and booleans.", type: "Multiple Choice", difficulty: "Beginner", xp_reward: 25, icon: "💾", color: "#34D399", order_index: 1, is_active: true },
+  { id: "lesson-2", title: "Loops", description: "Practice for, while, and range loops.", type: "Fill in the Blank", difficulty: "Medium", xp_reward: 35, icon: "🔄", color: "#60A5FA", order_index: 2, is_active: true },
+  { id: "lesson-3", title: "Functions", description: "Learn how to define and call functions.", type: "Syntax Practice", difficulty: "Hard", xp_reward: 45, icon: "⚙️", color: "#FF7F6B", order_index: 3, is_active: true },
+  { id: "lesson-4", title: "Lists & Dictionaries", description: "Use collections to store and retrieve data.", type: "Multiple Choice", difficulty: "Beginner", xp_reward: 30, icon: "📚", color: "#A78BFA", order_index: 4, is_active: true },
+  { id: "lesson-5", title: "Object-Oriented Programming", description: "Master classes and objects in Python.", type: "Fill in the Blank", difficulty: "Medium", xp_reward: 40, icon: "🏗️", color: "#60A5FA", order_index: 5, is_active: true },
+  { id: "lesson-6", title: "Error Handling", description: "Learn try-catch and debugging techniques.", type: "Syntax Practice", difficulty: "Hard", xp_reward: 50, icon: "🛠️", color: "#FF7F6B", order_index: 6, is_active: true },
+];
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+const mockUserLessons = [
+  { id: "ul-1", user_id: "test-user-123", lesson_id: "lesson-1", completed_at: new Date().toISOString(), score: 100, attempts: 1, lessons: mockLessons[0] },
+  { id: "ul-2", user_id: "test-user-123", lesson_id: "lesson-2", completed_at: new Date().toISOString(), score: 85, attempts: 2, lessons: mockLessons[1] },
+];
 
-// Test the connection
-const testConnection = async () => {
-  try {
-    const { data, error } = await supabase.from('profiles').select('count', { count: 'exact', head: true })
-    if (error) {
-      console.error('Supabase connection test failed:', error)
-    } else {
-      console.log('Supabase connection test successful')
-    }
-  } catch (error) {
-    console.error('Supabase connection test error:', error)
-  }
-}
+const mockFriends = [
+  { id: "user-1", username: "CodeMaster", total_xp: 2500, current_rank: "Gold", display_tag: "PRO", last_seen: new Date().toISOString() },
+  { id: "user-2", username: "PytonNinja", total_xp: 1800, current_rank: "Silver", display_tag: "DEV", last_seen: new Date().toISOString() },
+  { id: "user-3", username: "JSWizard", total_xp: 1200, current_rank: "Silver", display_tag: "WIZ", last_seen: new Date().toISOString() },
+];
 
-// Test connection on module load
-testConnection()
+const mockFriendRequests = [
+  { id: "req-1", requester_id: "user-4", created_at: new Date().toISOString(), requester: { username: "ReactGuru", total_xp: 950, current_rank: "Bronze", display_tag: "GUI" } },
+  { id: "req-2", requester_id: "user-5", created_at: new Date().toISOString(), requester: { username: "DataSci", total_xp: 875, current_rank: "Bronze", display_tag: "SCI" } },
+];
 
-// Auth helpers
+const mockDuels = [
+  { id: "duel-1", challenger_id: "test-user-123", opponent_id: "user-1", status: "completed", winner_id: "test-user-123", xp_reward: 20, created_at: new Date(Date.now() - 86400000).toISOString(), completed_at: new Date(Date.now() - 86400000).toISOString(), challenger: { username: "TestUser" }, opponent: { username: "CodeMaster" }, winner: { username: "TestUser" } },
+  { id: "duel-2", challenger_id: "user-2", opponent_id: "test-user-123", status: "completed", winner_id: "user-2", xp_reward: 15, created_at: new Date(Date.now() - 172800000).toISOString(), completed_at: new Date(Date.now() - 172800000).toISOString(), challenger: { username: "PytonNinja" }, opponent: { username: "TestUser" }, winner: { username: "PytonNinja" } },
+];
+
+// Simulate network delay
+const delay = (ms = 500) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Mock Auth functions
 export const signUp = async (email, password, username) => {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        username: username
-      }
-    }
-  })
-  return { data, error }
-}
+  await delay();
+  return { data: { user: { id: "new-user", email } }, error: null };
+};
 
 export const signIn = async (email, password) => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  })
-  return { data, error }
-}
+  await delay();
+  return { data: { user: { id: "test-user-123", email } }, error: null };
+};
 
 export const signOut = async () => {
-  const { error } = await supabase.auth.signOut()
-  return { error }
-}
+  await delay();
+  return { error: null };
+};
 
 export const getCurrentUser = async () => {
-  const { data: { user }, error } = await supabase.auth.getUser()
-  return { user, error }
-}
+  await delay();
+  return { user: { id: "test-user-123", email: "test@example.com" }, error: null };
+};
 
-// Profile helpers
+// Mock Profile functions
 export const getUserProfile = async (userId) => {
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', userId)
-    .single()
-  return { data, error }
-}
+  await delay();
+  const profile = {
+    id: userId,
+    username: "TestUser",
+    total_xp: 350,
+    current_rank: "Silver",
+    daily_streak: 5,
+    last_activity: new Date().toISOString(),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    display_tag: "WLU",
+    last_seen: new Date().toISOString()
+  };
+  return { data: profile, error: null };
+};
 
 export const updateUserProfile = async (userId, updates) => {
-  const { data, error } = await supabase
-    .from('profiles')
-    .update({
-      ...updates,
-      last_activity: new Date().toISOString(),
-      last_seen: new Date().toISOString()
-    })
-    .eq('id', userId)
-    .select()
-    .single()
-  return { data, error }
-}
+  await delay();
+  const updatedProfile = { id: userId, ...updates, updated_at: new Date().toISOString() };
+  return { data: updatedProfile, error: null };
+};
 
 export const addUserXP = async (userId, xpAmount) => {
-  const { data: profile, error: getError } = await getUserProfile(userId)
-  if (getError) return { data: null, error: getError }
+  await delay();
+  console.log(`Mock: Adding ${xpAmount} XP to user ${userId}`);
+  return { data: { total_xp: 350 + xpAmount }, error: null };
+};
 
-  const { data, error } = await updateUserProfile(userId, {
-    total_xp: profile.total_xp + xpAmount
-  })
-  return { data, error }
-}
-
-// Lessons helpers
+// Mock Lessons functions
 export const getLessons = async () => {
-  const { data, error } = await supabase
-    .from('lessons')
-    .select('*')
-    .eq('is_active', true)
-    .order('order_index')
-  return { data, error }
-}
+  await delay();
+  return { data: mockLessons, error: null };
+};
 
 export const getUserLessons = async (userId) => {
+  await delay();
   if (!userId) {
-    console.error('getUserLessons called without userId')
-    return { data: [], error: new Error('User ID is required') }
+    return { data: [], error: new Error('User ID is required') };
   }
-
-  console.log('Fetching lessons for user:', userId)
-  
-  try {
-  const { data, error } = await supabase
-    .from('user_lessons')
-    .select(`
-      *,
-      lessons (*)
-    `)
-    .eq('user_id', userId)
-    
-    if (error) {
-      console.error('Supabase query error:', error)
-    } else {
-      console.log('Successfully fetched user lessons:', data?.length || 0, 'records')
-    }
-    
-  return { data, error }
-  } catch (networkError) {
-    console.error('Network error in getUserLessons:', networkError)
-    return { data: [], error: networkError }
-  }
-}
+  return { data: mockUserLessons, error: null };
+};
 
 export const completeLesson = async (userId, lessonId, score = 100) => {
-  // First, insert the lesson completion
-  const { data: lessonData, error: lessonError } = await supabase
-    .from('user_lessons')
-    .upsert({
-      user_id: userId,
-      lesson_id: lessonId,
-      score: score,
-      completed_at: new Date().toISOString()
-    })
-    .select()
+  await delay();
+  const lesson = mockLessons.find(l => l.id === lessonId);
+  const completedLesson = {
+    id: `ul-${Date.now()}`,
+    user_id: userId,
+    lesson_id: lessonId,
+    score,
+    completed_at: new Date().toISOString()
+  };
+  return { 
+    data: { 
+      lesson: completedLesson, 
+      profile: { total_xp: 350 + (lesson?.xp_reward || 25) } 
+    }, 
+    error: null 
+  };
+};
 
-  if (lessonError) return { data: null, error: lessonError }
-
-  // Get the lesson XP reward
-  const { data: lesson, error: getLessonError } = await supabase
-    .from('lessons')
-    .select('xp_reward')
-    .eq('id', lessonId)
-    .single()
-
-  if (getLessonError) return { data: lessonData, error: getLessonError }
-
-  // Update user's total XP using the new helper
-  const { data: updatedProfile, error: updateError } = await addUserXP(userId, lesson.xp_reward)
-
-  return { data: { lesson: lessonData, profile: updatedProfile }, error: updateError }
-}
-
-// Leaderboard helpers - with fallback for missing functions
+// Mock Leaderboard functions
 export const getGlobalLeaderboard = async (limit = 50) => {
-  try {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('id, username, total_xp, current_rank, display_tag, last_seen')
-      .order('total_xp', { ascending: false })
-      .limit(limit)
-    
-    if (error) {
-      console.error('Leaderboard query error:', error)
-      return { data: null, error }
-    }
-    
-    // Add position to each user
-    const dataWithPosition = (data || []).map((user, index) => ({
-      ...user,
-      position: index + 1
-    }))
-    
-    return { data: dataWithPosition, error: null }
-  } catch (error) {
-    console.error('Leaderboard fetch error:', error)
-    return { data: [], error }
-  }
-}
+  await delay();
+  const sortedUsers = [...mockUsers]
+    .sort((a, b) => b.total_xp - a.total_xp)
+    .slice(0, limit)
+    .map((user, index) => ({ ...user, position: index + 1 }));
+  return { data: sortedUsers, error: null };
+};
 
 export const getUserRankPosition = async (userId) => {
-  try {
-    // Fallback implementation if RPC function doesn't exist
-    const { data: allUsers, error } = await supabase
-      .from('profiles')
-      .select('id, total_xp')
-      .order('total_xp', { ascending: false })
-    
-    if (error) return { data: 0, error }
-    
-    const position = allUsers.findIndex(user => user.id === userId) + 1
-    return { data: position, error: null }
-  } catch (error) {
-    console.error('User rank error:', error)
-    return { data: 0, error }
-  }
-}
+  await delay();
+  const sortedUsers = [...mockUsers].sort((a, b) => b.total_xp - a.total_xp);
+  const position = sortedUsers.findIndex(user => user.id === userId) + 1;
+  return { data: position || mockUsers.length + 1, error: null };
+};
 
-// Friends system helpers - with explicit aliases to fix table name conflicts
+// Mock Friends functions
 export const getFriendsList = async (userId) => {
-  try {
-    // Use explicit aliases for the joined profiles tables
-    const { data, error } = await supabase
-      .from('friendships')
-      .select(`
-        id,
-        requester_id,
-        addressee_id,
-        status,
-        requester:profiles!friendships_requester_id_fkey (
-          id, username, total_xp, current_rank, display_tag, last_seen
-        ),
-        addressee:profiles!friendships_addressee_id_fkey (
-          id, username, total_xp, current_rank, display_tag, last_seen
-        )
-      `)
-      .or(`requester_id.eq.${userId},addressee_id.eq.${userId}`)
-      .eq('status', 'accepted')
-    
-    if (error) {
-      console.error('Friends list error:', error)
-      return { data: [], error: null } // Return empty array instead of error
-    }
-    
-    // Process the data to get friend profiles
-    const friends = (data || []).map((friendship, index) => {
-      // Get the friend's profile (not the current user's)
-      const friend = friendship.requester_id === userId ? 
-        friendship.addressee : friendship.requester
-      
-      if (!friend || friend.id === userId) return null
-      
-      return {
-        ...friend,
-        position: index + 1
-      }
-    }).filter(friend => friend !== null)
-    
-    return { data: friends, error: null }
-  } catch (error) {
-    console.error('Friends fetch error:', error)
-    return { data: [], error: null }
-  }
-}
+  await delay();
+  const friends = mockFriends.map((friend, index) => ({ ...friend, position: index + 1 }));
+  return { data: friends, error: null };
+};
 
 export const getPendingFriendRequests = async (userId) => {
-  try {
-    const { data, error } = await supabase
-      .from('friendships')
-      .select(`
-        id,
-        requester_id,
-        created_at,
-        requester:profiles!friendships_requester_id_fkey (
-          username,
-          total_xp,
-          current_rank,
-          display_tag
-        )
-      `)
-      .eq('addressee_id', userId)
-      .eq('status', 'pending')
-      .order('created_at', { ascending: false })
-    
-    return { data: data || [], error }
-  } catch (error) {
-    console.error('Friend requests error:', error)
-    return { data: [], error }
-  }
-}
+  await delay();
+  return { data: mockFriendRequests, error: null };
+};
 
 export const sendFriendRequest = async (userId, targetUsername) => {
-  try {
-    // First find the target user
-    const { data: targetUser, error: findError } = await supabase
-      .from('profiles')
-      .select('id')
-      .eq('username', targetUsername)
-      .single()
-    
-    if (findError || !targetUser) {
-      return { data: { success: false, message: 'User not found' }, error: null }
-    }
-    
-    if (targetUser.id === userId) {
-      return { data: { success: false, message: 'Cannot send friend request to yourself' }, error: null }
-    }
-    
-    // Check if friendship already exists
-    const { data: existing, error: checkError } = await supabase
-      .from('friendships')
-      .select('*')
-      .or(`and(requester_id.eq.${userId},addressee_id.eq.${targetUser.id}),and(requester_id.eq.${targetUser.id},addressee_id.eq.${userId})`)
-    
-    if (existing && existing.length > 0) {
-      return { data: { success: false, message: 'Friend request already exists' }, error: null }
-    }
-    
-    // Create friend request
-    const { data, error } = await supabase
-      .from('friendships')
-      .insert({
-        requester_id: userId,
-        addressee_id: targetUser.id,
-        status: 'pending'
-      })
-    
-    if (error) {
-      return { data: { success: false, message: 'Error sending friend request' }, error }
-    }
-    
-    return { data: { success: true, message: 'Friend request sent!' }, error: null }
-  } catch (error) {
-    console.error('Send friend request error:', error)
-    return { data: { success: false, message: 'Error sending friend request' }, error }
+  await delay();
+  const targetUser = mockUsers.find(u => u.username === targetUsername);
+  if (!targetUser) {
+    return { data: { success: false, message: 'User not found' }, error: null };
   }
-}
+  if (targetUser.id === userId) {
+    return { data: { success: false, message: 'Cannot send friend request to yourself' }, error: null };
+  }
+  return { data: { success: true, message: 'Friend request sent!' }, error: null };
+};
 
 export const respondToFriendRequest = async (userId, friendshipId, response) => {
-  try {
-    const { data, error } = await supabase
-      .from('friendships')
-      .update({ status: response, updated_at: new Date().toISOString() })
-      .eq('id', friendshipId)
-      .eq('addressee_id', userId)
-      .eq('status', 'pending')
-    
-    if (error) {
-      return { data: { success: false, message: 'Error responding to friend request' }, error }
-    }
-    
-    return { data: { success: true, message: `Friend request ${response}!` }, error: null }
-  } catch (error) {
-    console.error('Respond to friend request error:', error)
-    return { data: { success: false, message: 'Error responding to friend request' }, error }
-  }
-}
+  await delay();
+  return { data: { success: true, message: `Friend request ${response}!` }, error: null };
+};
 
 export const searchUsers = async (searchTerm, currentUserId, limit = 10) => {
-  try {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('id, username, total_xp, current_rank, display_tag')
-      .ilike('username', `%${searchTerm}%`)
-      .neq('id', currentUserId)
-      .limit(limit)
-    
-    return { data: data || [], error }
-  } catch (error) {
-    console.error('Search users error:', error)
-    return { data: [], error }
-  }
-}
+  await delay();
+  const results = mockUsers
+    .filter(user => 
+      user.id !== currentUserId && 
+      user.username.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .slice(0, limit);
+  return { data: results, error: null };
+};
 
-// Duel system helpers - with fallbacks
+// Mock Duel functions
 export const createDuel = async (challengerId, opponentId) => {
-  try {
-    const { data, error } = await supabase
-      .from('duels')
-      .insert({
-        challenger_id: challengerId,
-        opponent_id: opponentId,
-        status: 'pending'
-      })
-      .select()
-      .single()
-    
-    return { data, error }
-  } catch (error) {
-    console.error('Create duel error:', error)
-    return { data: null, error }
-  }
-}
+  await delay();
+  const newDuel = {
+    id: `duel-${Date.now()}`,
+    challenger_id: challengerId,
+    opponent_id: opponentId,
+    status: 'active',
+    created_at: new Date().toISOString()
+  };
+  return { data: newDuel, error: null };
+};
 
 export const acceptDuel = async (duelId) => {
-  try {
-    const { data, error } = await supabase
-      .from('duels')
-      .update({ status: 'active' })
-      .eq('id', duelId)
-      .select()
-      .single()
-    
-    return { data, error }
-  } catch (error) {
-    console.error('Accept duel error:', error)
-    return { data: null, error }
-  }
-}
+  await delay();
+  return { data: { id: duelId, status: 'active' }, error: null };
+};
 
 export const completeDuel = async (duelId, winnerId, xpReward) => {
-  try {
-    // Simple implementation without RPC function
-    const loserXP = Math.max(Math.floor(xpReward / 3), 3)
-    
-    // Update duel status
-    const { data: duelData, error: duelError } = await supabase
-      .from('duels')
-      .update({
-        status: 'completed',
-        winner_id: winnerId,
-        xp_reward: xpReward,
-        completed_at: new Date().toISOString()
-      })
-      .eq('id', duelId)
-      .select()
-      .single()
-    
-    if (duelError) return { data: null, error: duelError }
-    
-    // Update winner's XP
-    await addUserXP(winnerId, xpReward)
-    
-    // Update loser's XP
-    const loserId = duelData.challenger_id === winnerId ? duelData.opponent_id : duelData.challenger_id
-    await addUserXP(loserId, loserXP)
-    
-    return { 
-      data: { 
-        ...duelData, 
-        winner_xp: xpReward, 
-        loser_xp: loserXP 
-      }, 
-      error: null 
-    }
-  } catch (error) {
-    console.error('Complete duel error:', error)
-    return { data: null, error }
-  }
-}
+  await delay();
+  const duel = {
+    id: duelId,
+    winner_id: winnerId,
+    xp_reward: xpReward,
+    status: 'completed',
+    completed_at: new Date().toISOString(),
+    winner_xp: xpReward,
+    loser_xp: Math.max(Math.floor(xpReward / 3), 3)
+  };
+  return { data: duel, error: null };
+};
 
 export const getUserDuels = async (userId) => {
-  try {
-    const { data, error } = await supabase
-      .from('duels')
-      .select(`
-        *,
-        challenger:profiles!duels_challenger_id_fkey (username, total_xp, current_rank),
-        opponent:profiles!duels_opponent_id_fkey (username, total_xp, current_rank),
-        winner:profiles!duels_winner_id_fkey (username)
-      `)
-      .or(`challenger_id.eq.${userId},opponent_id.eq.${userId}`)
-      .order('created_at', { ascending: false })
-    
-    return { data: data || [], error }
-  } catch (error) {
-    console.error('Get user duels error:', error)
-    return { data: [], error }
-  }
-}
+  await delay();
+  return { data: mockDuels, error: null };
+};
 
-// Real-time subscriptions with proper channel management
-let leaderboardChannel = null
-let friendRequestsChannels = new Map()
-let userProfileChannels = new Map()
-
+// Mock Real-time subscriptions
 export const subscribeToLeaderboardChanges = (callback) => {
-  try {
-    // Unsubscribe from existing channel if it exists
-    if (leaderboardChannel) {
-      leaderboardChannel.unsubscribe()
-    }
-    
-    leaderboardChannel = supabase
-      .channel('leaderboard-changes')
-      .on('postgres_changes', {
-        event: 'UPDATE',
-        schema: 'public',
-        table: 'profiles',
-        filter: 'total_xp=neq.null'
-      }, callback)
-      .subscribe()
-    
-    return leaderboardChannel
-  } catch (error) {
-    console.error('Leaderboard subscription error:', error)
-    return { unsubscribe: () => {} }
-  }
-}
+  console.log('Mock: Subscribed to leaderboard changes');
+  return { unsubscribe: () => console.log('Mock: Unsubscribed from leaderboard changes') };
+};
 
 export const subscribeToFriendRequests = (userId, callback) => {
-  try {
-    // Check if we already have a channel for this user
-    if (friendRequestsChannels.has(userId)) {
-      const existingChannel = friendRequestsChannels.get(userId)
-      existingChannel.unsubscribe()
-    }
-    
-    const channel = supabase
-      .channel(`friend-requests-${userId}`)
-      .on('postgres_changes', {
-        event: '*',
-        schema: 'public',
-        table: 'friendships',
-        filter: `addressee_id=eq.${userId}`
-      }, callback)
-      .subscribe()
-    
-    friendRequestsChannels.set(userId, channel)
-    return channel
-  } catch (error) {
-    console.error('Friend requests subscription error:', error)
-    return { unsubscribe: () => {} }
-  }
-}
+  console.log(`Mock: Subscribed to friend requests for user ${userId}`);
+  return { unsubscribe: () => console.log(`Mock: Unsubscribed from friend requests for user ${userId}`) };
+};
 
 export const unsubscribeFromFriendRequests = (userId) => {
-  if (friendRequestsChannels.has(userId)) {
-    const channel = friendRequestsChannels.get(userId)
-    channel.unsubscribe()
-    friendRequestsChannels.delete(userId)
-  }
-}
+  console.log(`Mock: Unsubscribed from friend requests for user ${userId}`);
+};
 
 export const subscribeToUserProfile = (userId, callback) => {
-  try {
-    // Check if we already have a channel for this user
-    if (userProfileChannels.has(userId)) {
-      const existingChannel = userProfileChannels.get(userId)
-      existingChannel.unsubscribe()
-    }
-    
-    const channel = supabase
-      .channel(`user-profile-${userId}`)
-      .on('postgres_changes', {
-        event: 'UPDATE',
-        schema: 'public',
-        table: 'profiles',
-        filter: `id=eq.${userId}`
-      }, callback)
-      .subscribe()
-    
-    userProfileChannels.set(userId, channel)
-    return channel
-  } catch (error) {
-    console.error('User profile subscription error:', error)
-    return { unsubscribe: () => {} }
+  console.log(`Mock: Subscribed to user profile changes for user ${userId}`);
+  return { unsubscribe: () => console.log(`Mock: Unsubscribed from user profile changes for user ${userId}`) };
+};
+
+// Mock client (not used but exported for compatibility)
+export const supabase = {
+  auth: {
+    getSession: async () => ({ data: { session: null }, error: null }),
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
   }
-}
+};
